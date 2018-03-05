@@ -1,4 +1,4 @@
-# hide-keyboard
+# tree-view
 
 This library is used ...
 
@@ -43,7 +43,7 @@ Once your library is imported, you can use its directives in your Ionic applicat
 
 ```xml
 <!-- You can now use your library component in app.component.html -->
-<treeView [items]="myItems"></treeView>
+<tree-view [items]="myItems"></tree-view>
 ```
 ## License
 
