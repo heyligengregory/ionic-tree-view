@@ -1,0 +1,31 @@
+{
+  "name": "ionic-tree-view",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heyligengregory/ionic-tree-view"
+  },
+  "author": {
+    "name": "Gregory Heyligen",
+    "email": "cudderheyl@gmail.com"
+  },
+  "keywords": [
+    "angular",
+    "ionic",
+    "treeview"
+  ],
+
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/heyligengregory/ionic-tree-view/issues"
+  },
+  "main": "tree-view.umd.js",
+  "module": "tree-view.js",
+  "jsnext:main": "tree-view.js",
+  "typings": "tree-view.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}
