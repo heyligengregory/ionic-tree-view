@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
-import { TreeViewService } from 'tree-view.service';
+import { TreeViewService } from './ionic-tree-view.service';
 
 @Component({
     selector: 'tree-view',
-    templateUrl: './tree-view.component.html',
-    styleUrls: ['./tree-view.component.scss']
+    templateUrl: './ionic-tree-view.component.html',
+    styleUrls: ['./ionic-tree-view.component.scss']
 })
 export class TreeViewComponent {
     @Input()
@@ -22,10 +22,18 @@ export class TreeViewComponent {
     private treeViewItems = [];
     private itemsCheckedTemp = [];
 
+
+    /** Service */
+    private hasAnyChildCheckedResult = false;
+    public treeViewList: any;
+    public itemsChecked: any;
+
     constructor(
-        private treeViewService: TreeViewService
+        
     ) {
-        this.treeViewService.readOnLocalStorageCheckItems(this.persistedName, this.treeViewName, this.items);
+        this.treeViewList = {};
+        this.itemsChecked = {};
+        this.readOnLocalStorageCheckItems(this.persistedName, this.treeViewName, this.items);
         if (!this.getTreeView()) {
             this.initTreeView();
         };
@@ -35,7 +43,7 @@ export class TreeViewComponent {
 
     // Init the treeView by generate the tree and set the tree in the treeViewService
     private initTreeView(): void {
-        this.treeViewService.addTreeViewByName(this.generateTree(), this.treeViewName);
+        this.addTreeViewByName(this.generateTree(), this.treeViewName);
         this.collapseItem(this.getTreeView());
     };
 
@@ -45,7 +53,7 @@ export class TreeViewComponent {
         this.itemLevel = 1;
 
         this.items.filter(e => e.parentID === undefined).forEach((value: any, key) => {
-            treeViewItems.push(this.treeViewService.createNewItem(value, this.itemLevel, this.treeViewName));
+            treeViewItems.push(this.createNewItem(value, this.itemLevel, this.treeViewName));
         });
 
         this.itemLevel++;
@@ -60,7 +68,7 @@ export class TreeViewComponent {
         treeData.filter(e => e.parentID !== undefined).forEach((itemToAdd, ckikey) => {
             treeViewItems.forEach((item, tvikey) => {
                 if (itemToAdd.parentID === item.id) {
-                    item.items.push(this.treeViewService.createNewItem(itemToAdd, this.itemLevel, this.treeViewName));
+                    item.items.push(this.createNewItem(itemToAdd, this.itemLevel, this.treeViewName));
                 } else if (item.items && item.items.length !== 0) {
                     item = this.createItemsOfLevelHigherThanTwo(itemToAdd, item, this.itemLevel + 1);
                 }
@@ -81,7 +89,7 @@ export class TreeViewComponent {
             if (treeDataItemToAdd.parentID === child.id) {
                 let itemExist = child.items.filter(e => e.id === child.id);
                 if (!itemExist || (itemExist && itemExist.length === 0)) {
-                    child.items.push(this.treeViewService.createNewItem(treeDataItemToAdd, itemLevel, this.treeViewName));
+                    child.items.push(this.createNewItem(treeDataItemToAdd, itemLevel, this.treeViewName));
                 }
             } else if (child.items && child.items.length !== 0) {
                 child = this.createItemsOfLevelHigherThanTwo(treeDataItemToAdd, child, itemLevel + 1);
@@ -127,15 +135,15 @@ export class TreeViewComponent {
         item.preventCollapse = true;
 
         // Check each childs of item
-        this.checkChildItems(item).then(r => {
+        this.checkAllChildItems(item).then(r => {
             // Reset the checked array & checked temp array
-            this.treeViewService.addItemsCheckedByName([], this.treeViewName);
+            this.addItemsCheckedByName([], this.treeViewName);
             this.itemsCheckedTemp = [];
 
             // Check or uncheck each parent of treeView
             this.checkParentItems(this.getTreeView()).then((response: any) => {
                 this.addCheckedItemsToCheckItemList(this.getTreeView()).then((items: any) => {
-                    this.treeViewService.addItemsCheckedByName(items, this.treeViewName);
+                    this.addItemsCheckedByName(items, this.treeViewName);
 
                     // Launch callback function after check changed
                     if (this.callbackFunctionCheckChanged && typeof (this.callbackFunctionCheckChanged) === 'function') {
@@ -144,7 +152,7 @@ export class TreeViewComponent {
 
                     // Persist checked items into local storage
                     if (!!this.persistedName) {
-                        this.treeViewService.writeOnLocalStorageCheckItems(this.persistedName, this.treeViewName);
+                        this.writeOnLocalStorageCheckItems(this.persistedName, this.treeViewName);
                     }
                 });
             });
@@ -168,14 +176,14 @@ export class TreeViewComponent {
     }
 
     // Check each child of item
-    private checkChildItems(item) {
+    private checkAllChildItems(item) {
         return new Promise((resolve, reject) => {
-            this.treeViewService.updateCheckedValueOfItem(item, this.items);
+            this.updateCheckedValueOfItem(item, this.items);
 
             if (!!item.items) {
                 item.items.forEach((itemChild) => {
                     itemChild.checked = item.checked;
-                    return this.checkChildItems(itemChild).then(resolve, reject);
+                    return this.checkAllChildItems(itemChild).then(resolve, reject);
                 });
             }
             resolve();
@@ -209,8 +217,8 @@ export class TreeViewComponent {
         if (!item.items || (item.items && item.items.length === 0)) {
             return false;
         }
-        let allChildChecked: boolean = this.treeViewService.allChildAreChecked(item.items);
-        let anyChildChecked: boolean = this.treeViewService.anyChildChecked(item.items);
+        let allChildChecked: boolean = this.allChildAreChecked(item.items);
+        let anyChildChecked: boolean = this.anyChildChecked(item.items);
 
         if (allChildChecked || (!allChildChecked && !anyChildChecked)) {
             return false;
@@ -242,10 +250,160 @@ export class TreeViewComponent {
     };
 
     private getTreeView(): any {
-        return this.treeViewService.getTreeViewByName(this.treeViewName);
+        return this.getTreeViewByName(this.treeViewName);
     };
 
     private getItemsChecked(): any {
-        return this.treeViewService.getItemsCheckedByName(this.treeViewName);
+        return this.getItemsCheckedByName(this.treeViewName);
+    };
+
+    /** To Add into service */
+
+    public checkChildItems(item, items) {
+        return new Promise((resolve, reject) => {
+            this.updateCheckedValueOfItem(item, items);
+
+            if (!!item.items) {
+                item.items.forEach((itemChild) => {
+                    itemChild.checked = item.checked;
+                    return this.checkChildItems(itemChild, items).then(resolve, reject);
+                });
+            }
+            resolve();
+        });
+    };
+
+    public checkValueOfEachChild(items: any, result: boolean): boolean {
+        items.forEach((itemChild, key) => {
+            if (itemChild.items && itemChild.items.length > 0) {
+                result = result && this.checkValueOfEachChild(itemChild.items, result);
+            }
+            if (itemChild.checked) {
+                result = result && true;
+            }
+        });
+
+        return result;
+    };
+
+    public allChildAreChecked(items: any, result = true): boolean {
+        if (!items || (items && items.length === 0)) {
+            return false;
+        }
+        items.forEach((itemChild, key) => {
+            if (itemChild.items && itemChild.items.length > 0) {
+                result = result && this.checkValueOfEachChild(itemChild.items, result);
+            }
+            result = result && itemChild.checked;
+        });
+
+        return result;
+    };
+
+    public anyChildChecked(items, result = false): boolean {
+        if (!items || (items && items.length === 0)) {
+            return false;
+        }
+        this.hasAnyChildCheckedResult = false;
+
+        return this.hasAnyChildChecked(items);
+    };
+
+    private hasAnyChildChecked(items): boolean {
+
+        items.forEach((itemChild, key) => {
+            if (itemChild.items && itemChild.items.length > 0) {
+                this.hasAnyChildChecked(itemChild.items);
+            }
+            if (itemChild.checked) {
+                this.hasAnyChildCheckedResult = true;
+            }
+        });
+
+        return this.hasAnyChildCheckedResult;
+    };
+
+    public createNewItem(itemToAdd: any, itemLevel: number, treeViewName: string): any {
+        return {
+            id: itemToAdd.id,
+            itemLevel: itemLevel,
+            text: itemToAdd.name,
+            collapsed: true,
+            checked: this.verifyIfItemIsChecked(itemToAdd.id, treeViewName),
+            items: [],
+            parentID: itemToAdd.parentID
+        };
+    };
+
+    private verifyIfItemIsChecked(itemID: number, treeViewName: string) {
+        if (!this.itemsChecked[treeViewName]) {
+            return false;
+        }
+        return this.itemsChecked[treeViewName].filter(e => e.id === itemID).length > 0;
+    };
+
+    public updateCheckedValueOfItem(itemToCheck: any, items: any[]): void {
+        let item = items.filter(value => value.id === itemToCheck.id)[0];
+        item['checked'] = this.setCheckedValue(itemToCheck);
+        if (item['checked'] !== itemToCheck['checked']) {
+            item['checked'] = itemToCheck['checked'];
+            item['checkChanged'] = true;
+        }
+    };
+
+    public writeOnLocalStorageCheckItems(persistedName: string, treeViewName: string): void {
+        window.localStorage.setItem(persistedName, JSON.stringify({ items: this.createArrayOfIdOfItemsCheckedByTreeViewName(treeViewName) }));
+    };
+
+    public readOnLocalStorageCheckItems(persistedName: string, treeViewName: string, items: any[]): any {
+        let jsonObjectItems = window.localStorage.getItem(persistedName);
+        if (!!jsonObjectItems) {
+            let objectItems: any = JSON.parse(jsonObjectItems);
+            this.addItemsCheckedByName(items.filter(e => objectItems.items.indexOf(e.id) !== -1), treeViewName);
+        }
+
+        if (!this.getItemsCheckedByName(treeViewName)) {
+            this.addItemsCheckedByName([], treeViewName);
+            }
+
+    };
+
+    public loadAlreadyCheckedItems(persistedName: string, treeViewName: string, items: any): number[] {
+        if (!this.itemsChecked[treeViewName] || (this.itemsChecked[treeViewName] && this.itemsChecked[treeViewName].length === 0)) {
+            this.readOnLocalStorageCheckItems(persistedName, treeViewName, items);
+
+            if (!this.itemsChecked[treeViewName]) {
+                return [];
+            }
+        }
+
+        return this.itemsChecked[treeViewName].map(e => e.id);
+    };
+
+    public createArrayOfIdOfItemsCheckedByTreeViewName(treeViewName: string): number[] {
+        if (!this.itemsChecked[treeViewName]) {
+            return [];
+        }
+        return this.itemsChecked[treeViewName].map(e => e.id);
+    };
+
+    public setCheckedValue(item: any): boolean {
+        return item['checked'] === 1 || item['checked'] === 'true' || item['checked'] === true;
+    };
+
+    public getItemsCheckedByName(name: string): any {
+        return this.itemsChecked[name];
+    };
+
+    public addItemsCheckedByName(itemChecked: any, name: string): void {
+        this.itemsChecked[name] = itemChecked;
+    };
+
+    public getTreeViewByName(name: string): any {
+        return this.treeViewList[name];
+    };
+
+    public addTreeViewByName(treeView: any, name: string): void {
+        this.treeViewList[name] = treeView;
     };
 };

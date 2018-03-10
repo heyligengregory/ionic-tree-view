@@ -1,8 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TreeViewService } from 'tree-view.service';
-import { TreeViewComponent } from 'tree-view.component';
+import { TreeViewComponent } from 'ionic-tree-view.component';
+
+export * from './ionic-tree-view.component';
 
 @NgModule({
 	imports: [
@@ -15,11 +16,11 @@ import { TreeViewComponent } from 'tree-view.component';
 		TreeViewComponent
 	]
 })
-export class TreeViewModule {
+export class IonicTreeViewModule {
 	static forRoot(): ModuleWithProviders {
 		return {
-			ngModule: TreeViewModule,
-			providers: [TreeViewService]
+			ngModule: IonicTreeViewModule,
+			providers: []
 		};
 	}
 }

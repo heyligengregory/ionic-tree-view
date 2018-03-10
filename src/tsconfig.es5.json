@@ -21,10 +21,10 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleOutFile": "tree-view.js",
-    "flatModuleId": "tree-view"
+    "flatModuleOutFile": "ionic-tree-view.js",
+    "flatModuleId": "ionic-tree-view"
   },
   "files": [
-    "./tree-view.module.ts"
+    "./ionic-tree-view.module.ts"
   ]
 }

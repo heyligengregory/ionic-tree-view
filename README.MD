@@ -21,7 +21,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import library
-import { TreeViewModule } from 'tree-view';
+import { IonicTreeViewModule } from 'ionic-tree-view';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { TreeViewModule } from 'tree-view';
     BrowserModule,
 
     // Specify library as an import
-    TreeViewModule
+    IonicTreeViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 {
   "name": "ionic-tree-view",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/heyligengregory/ionic-tree-view"
@@ -19,13 +19,13 @@
   "bugs": {
     "url": "https://github.com/heyligengregory/ionic-tree-view/issues"
   },
-  "main": "tree-view.umd.js",
-  "module": "tree-view.js",
-  "jsnext:main": "tree-view.js",
-  "typings": "tree-view.d.ts",
+  "main": "ionic-tree-view.umd.js",
+  "module": "ionic-tree-view.js",
+  "jsnext:main": "ionic-tree-view.js",
+  "typings": "ionic-tree-view.d.ts",
   "peerDependencies": {
-    "@angular/core": "^4.0.0",
-    "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4"
+    "@angular/core": "5.0.3",
+    "rxjs": "5.5.2",
+    "zone.js": "0.8.18"
   }
 }

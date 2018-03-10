@@ -66,7 +66,7 @@ gulp.task('rollup:fesm', function () {
 
       // Bundle's entry point
       // See "input" in https://rollupjs.org/#core-functionality
-      input: `${buildFolder}/tree-view.module.js`,
+      input: `${buildFolder}/ionic-tree-view.module.js`,
 
       // Allow mixing of hypothetical and actual files. "Actual" files can be files
       // accessed by Rollup or produced by plugins further down the chain.
@@ -99,7 +99,7 @@ gulp.task('rollup:umd', function () {
 
       // Bundle's entry point
       // See "input" in https://rollupjs.org/#core-functionality
-      input: `${buildFolder}/tree-view.module.js`,
+      input: `${buildFolder}/ionic-tree-view.module.js`,
 
       // Allow mixing of hypothetical and actual files. "Actual" files can be files
       // accessed by Rollup or produced by plugins further down the chain.
@@ -125,7 +125,7 @@ gulp.task('rollup:umd', function () {
       // The name to use for the module for UMD/IIFE bundles
       // (required for bundles with exports)
       // See "name" in https://rollupjs.org/#core-functionality
-      name: 'tree-view',
+      name: 'ionic-tree-view',
 
       // See "globals" in https://rollupjs.org/#core-functionality
       globals: {
@@ -133,7 +133,7 @@ gulp.task('rollup:umd', function () {
       }
 
     }))
-    .pipe(rename('tree-view.umd.js'))
+    .pipe(rename('ionic-tree-view.umd.js'))
     .pipe(gulp.dest(distFolder));
 });
 
