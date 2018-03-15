@@ -11,6 +11,22 @@ export class TreeViewService {
         this.itemsChecked = {};
     }
 
+    // Close each item of items
+    public collapseItem(item): any {
+        if (item.preventCollapse) {
+            item.preventCollapse = false;
+        } else {
+            for (let key in item) {
+                if (item[key] && typeof (item[key]) === 'object') {
+                    item[key].collapsed = !item[key].collapsed;
+                    this.collapseItem(item[key]);
+                }
+            }
+            return item;
+        }
+        return item;
+    };
+
     public checkChildItems(item, items) {
         return new Promise((resolve, reject) => {
             this.updateCheckedValueOfItem(item, items);
