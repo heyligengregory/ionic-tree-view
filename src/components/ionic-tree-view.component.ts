@@ -3,8 +3,9 @@ import { DataService } from 'services/tree-view-data.service';
 import { TreeViewService } from 'services/tree-view.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'tree-view',
-    templateUrl: './tree-view.component.html'
+    templateUrl: './ionic-tree-view.component.html'
 })
 export class TreeViewComponent {
     @Input()
