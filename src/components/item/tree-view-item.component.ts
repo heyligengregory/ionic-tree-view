@@ -4,6 +4,7 @@ import { EventService } from 'services/tree-view-event.service';
 
 
 @Component({
+	moduleId: module.id,
 	selector: 'tree-view-item',
 	templateUrl: './tree-view-item.component.html'
 })

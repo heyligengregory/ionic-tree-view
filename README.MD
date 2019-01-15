@@ -1,6 +1,13 @@
-# tree-view
+# Tree-view
 
-This library is used ...
+This library is used to generate a treeview from an object list, you will find an example of a list below:
+
+```json
+[ { "id":1, "name":"features" }, { "id":2, "name":"Add", "parentID":1 }, { "id":3, "name":"Remove", "parentID":1 }, { "id":9, "name":"Update", "parentID":1 }, { "id":11, "name":"UpdateDel", "parentID":9 }, { "id":27, "name":"Add", "parentID":2 }, { "id":28, "name":"master" } ]
+```
+
+## Rendering
+![alt text](https://user-images.githubusercontent.com/17003290/37466561-5949cd60-285e-11e8-93a2-4b33662a20ed.png)
 
 ## Installation
 
@@ -9,7 +16,6 @@ To install this library, run:
 ```bash
 $ npm install ionic-tree-view --save
 ```
-
 ## Use library into Ionic Project
 
 Once you have installed, you can import library in any Ionic application by doing:
@@ -31,7 +37,7 @@ import { IonicTreeViewModule } from 'ionic-tree-view';
     BrowserModule,
 
     // Specify library as an import
-    IonicTreeViewModule
+    IonicTreeViewModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -39,12 +45,30 @@ import { IonicTreeViewModule } from 'ionic-tree-view';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its directives in your Ionic application:
+Once your library is imported, you can use component in your Ionic application:
 
 ```xml
-<!-- You can now use your library component in app.component.html -->
-<tree-view [items]="myItems"></tree-view>
+<!-- You can now use component in home.html -->
+  <tree-view [items]="items" [persistedName]="persistedName" [treeViewName]="treeViewName"></tree-view>
 ```
+
+```typescript
+  public items = [..];
+  public persistedName = "MyItemsPersisted";
+  public treeViewName = "MyItemsTreeView";
+```
+
+## Inputs
+
+1. items
+This represents the elements that will form the treeview
+
+2. persistedName
+This allows you to save checked items in the local storage.
+
+3. treeViewName
+This is the name of your treeview
+
 ## License
 
 MIT © [Gregory Heyligen](mailto:cudderheyl@gmail.com)

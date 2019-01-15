@@ -80,6 +80,7 @@ function inlineResourcesFromString(content, urlResolver) {
 function inlineTemplate(content, urlResolver) {
   return content.replace(/templateUrl:\s*'([^']+?\.html)'/g, function (m, templateUrl) {
     const templateFile = urlResolver(templateUrl);
+    debugger;
     const templateContent = fs.readFileSync(templateFile, 'utf-8');
     const shortenedTemplate = templateContent
       .replace(/([\n\r]\s*)+/gm, ' ')
