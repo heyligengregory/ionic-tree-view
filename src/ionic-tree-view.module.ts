@@ -21,7 +21,8 @@ import { TreeViewService } from 'services/tree-view.service';
 		TreeViewComponent,
 		TreeViewItemsComponent,
 		TreeViewItemComponent
-	]
+	],
+	providers: [DataService, EventService, TreeViewService]
 })
 export class IonicTreeViewModule {
 	static forRoot(): ModuleWithProviders {
