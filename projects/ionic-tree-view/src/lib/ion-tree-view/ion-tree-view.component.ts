@@ -1,13 +1,47 @@
-import { Component, Input } from '@angular/core';
-import { DataService } from 'services/tree-view-data.service';
-import { TreeViewService } from 'services/tree-view.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { IonTreeViewLibService } from '../ion-tree-view-lib.service';
+import { IonTreeViewDataService } from '../ionc-tree-view-data.service';
 
 @Component({
-    moduleId: module.id,
-    selector: 'tree-view',
-    templateUrl: './ionic-tree-view.component.html'
+    selector: 'ion-tree-view',
+    template: `
+    <div class="list" *ngIf="items && items.length > 0">
+        <tree-view-items *ngFor='let item of myTreeView' [treeViewName]="treeViewName" [persistedName]="persistedName" [item]="item"></tree-view-items>
+    </div>
+  `,
+    styles: [
+        `
+        .itemLevel-1 {
+            padding-left: 0px;
+        }
+        
+        @for $i from 2 through 30 {
+            .itemLevel-#{$i} {
+                margin-left: (($i - 1) * 20px) !important;
+            }
+        }
+        
+        .noElips {
+            text-overflow: initial;
+            white-space: normal;
+        }
+        
+        ion-item, ion-item .label-md, tree-view-items .list-md {
+            margin: 0 !important;
+        }
+        
+        ion-item .item-inner {
+            border: none !important;
+        }
+        
+        tree-view-items ion-item .item-md {
+            padding-left: 0 !important;
+        }
+        `
+    ]
 })
-export class TreeViewComponent {
+export class IonTreeViewComponent implements OnInit {
+
     @Input()
     public items: any;
     @Input()
@@ -16,14 +50,14 @@ export class TreeViewComponent {
     public persistedName: string;
     @Input()
     public treeViewName: string;
+    public myTreeView: any;
 
     private itemLevel = 1;
     private tempArray = [];
-    private myTreeView: any;
 
     constructor(
-        public dataService: DataService,
-        public treeViewService: TreeViewService) {}
+        public dataService: IonTreeViewDataService,
+        public treeViewService: IonTreeViewLibService) { }
 
     ngOnInit() {
         this.dataService.setItemsByName(this.items, this.treeViewName);
@@ -136,4 +170,4 @@ export class TreeViewComponent {
     public addTreeViewByName(treeView: any, name: string): void {
         this.dataService.setTreeViewItemsByName(treeView, name);
     };
-};
+}

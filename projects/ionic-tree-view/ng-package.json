@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/ionic-tree-view",
+  "lib": {
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+        "@ionic/angular": "angular"
+    }
+  }
+}
