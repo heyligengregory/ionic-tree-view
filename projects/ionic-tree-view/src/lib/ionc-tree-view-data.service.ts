@@ -1,7 +1,9 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-@Injectable()
-export class DataService {
+@Injectable({
+  providedIn: 'root'
+})
+export class IonTreeViewDataService {
     private _itemsHolder: any;
     private _itemsCheckedHolder: any;
     private _itemsCheckedTempHolder: any;

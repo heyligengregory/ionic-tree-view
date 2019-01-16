@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
-export class TreeViewService {
+@Injectable({
+  providedIn: 'root'
+})
+export class IonTreeViewLibService {
+
     private hasAnyChildCheckedResult = false;
     public treeViewList: any;
     public itemsChecked: any;
