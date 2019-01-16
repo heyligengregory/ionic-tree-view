@@ -7,7 +7,10 @@ import { TreeViewItemsComponent } from './tree-view-items/tree-view-items.compon
 import { TreeViewItemComponent } from './tree-view-item/tree-view-item.component';
 
 @NgModule({
-    declarations: [IonTreeViewComponent, TreeViewItemsComponent, TreeViewItemComponent],
+    declarations: [
+        IonTreeViewComponent,
+        TreeViewItemsComponent,
+        TreeViewItemComponent],
     imports: [
         IonicModule.forRoot(),
         FormsModule,
@@ -19,4 +22,4 @@ import { TreeViewItemComponent } from './tree-view-item/tree-view-item.component
         TreeViewItemComponent
     ]
 })
-export class IonTreeViewLibModule { }
+export class IonTreeViewModule { }
