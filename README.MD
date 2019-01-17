@@ -37,7 +37,7 @@ import { IonicTreeViewModule } from 'ionic-tree-view';
     BrowserModule,
 
     // Specify library as an import
-    IonicTreeViewModule.forRoot()
+    IonicTreeViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -49,7 +49,7 @@ Once your library is imported, you can use component in your Ionic application:
 
 ```xml
 <!-- You can now use component in home.html -->
-  <tree-view [items]="items" [persistedName]="persistedName" [treeViewName]="treeViewName"></tree-view>
+  <ion-tree-view [items]="items" [persistedName]="persistedName" [treeViewName]="treeViewName"></ion-tree-view>
 ```
 
 ```typescript
