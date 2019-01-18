@@ -8,18 +8,18 @@ import { IonTreeViewEventService } from '../ionc-tree-view-event.service';
     <ion-item>
         <ion-grid>
             <ion-row>
-                <ion-col col-1>
+                <ion-col size="1">
                     <div class="checkbox-icon"><div class="checkbox-inner"></div></div>
                             <input id="check-bh-{{item.id}}" type="checkbox" 
                             [(ngModel)]="item.checked" (ngModelChange)="onCheckChanged()" />
                 </ion-col>
-                <ion-col col-1 (click)="treeViewService.collapseItem(item)">
+                <ion-col size="1" (click)="treeViewService.collapseItem(item)">
                     <span [hidden]="!item || (item.items && item.items.length == 0)">
                             <ion-icon *ngIf="item.items.collapsed != undefined && item.items.collapsed === false" name="arrow-dropdown"></ion-icon>
                             <ion-icon *ngIf="item.items.collapsed != undefined && item.items.collapsed === true" name="arrow-dropright"></ion-icon>
                     </span>
                 </ion-col>
-                <ion-col col-10 class="noElips" (click)="treeViewService.collapseItem(item)">
+                <ion-col size="10" class="noElips" (click)="treeViewService.collapseItem(item)">
                         {{item.text}}
                 </ion-col>
             </ion-row>
@@ -31,22 +31,22 @@ import { IonTreeViewEventService } from '../ionc-tree-view-event.service';
 export class TreeViewItemComponent {
 
     @Input()
-	public item: any;
-	@Input()
-	public persistedName: string;
-	@Input()
-	public treeViewName: string;
+    public item: any;
+    @Input()
+    public persistedName: string;
+    @Input()
+    public treeViewName: string;
 
-	constructor(
-		public treeViewService: IonTreeViewLibService,
-		public eventService: IonTreeViewEventService) { }
+    constructor(
+        public treeViewService: IonTreeViewLibService,
+        public eventService: IonTreeViewEventService) { }
 
-	public ngOnInit() {
-		if (this.item && this.item.checked == undefined)
-			this.item.checked = false;
-	}
-	
-	public onCheckChanged(): void {
-		this.eventService.checkChanged(this.item, this.treeViewName, this.persistedName);
-	}
+    public ngOnInit() {
+        if (this.item && this.item.checked == undefined)
+            this.item.checked = false;
+    }
+
+    public onCheckChanged(): void {
+        this.eventService.checkChanged(this.item, this.treeViewName, this.persistedName);
+    }
 }
