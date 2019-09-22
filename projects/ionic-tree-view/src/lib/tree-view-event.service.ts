@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { IonTreeViewDataService } from '../lib/ionc-tree-view-data.service';
+import { TreeViewDataService } from './tree-view-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IonTreeViewEventService {
+export class TreeViewEventService {
     constructor(
-        public dataService: IonTreeViewDataService
+        public dataService: TreeViewDataService
     ) {
 
     }

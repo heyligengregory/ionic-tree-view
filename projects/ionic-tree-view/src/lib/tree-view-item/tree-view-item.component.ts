@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IonTreeViewLibService } from '../ion-tree-view-lib.service';
-import { IonTreeViewEventService } from '../ionc-tree-view-event.service';
+import { TreeViewLibService } from '../tree-view-lib.service';
+import { TreeViewEventService } from '../tree-view-event.service';
 
 @Component({
     selector: 'tree-view-item',
@@ -38,8 +38,8 @@ export class TreeViewItemComponent {
     public treeViewName: string;
 
     constructor(
-        public treeViewService: IonTreeViewLibService,
-        public eventService: IonTreeViewEventService) { }
+        public treeViewService: TreeViewLibService,
+        public eventService: TreeViewEventService) { }
 
     public ngOnInit() {
         if (this.item && this.item.checked == undefined)

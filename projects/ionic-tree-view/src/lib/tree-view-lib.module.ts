@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { IonTreeViewComponent } from './ion-tree-view/ion-tree-view.component';
+import { TreeViewComponent } from './tree-view/tree-view.component';
 import { TreeViewItemsComponent } from './tree-view-items/tree-view-items.component';
 import { TreeViewItemComponent } from './tree-view-item/tree-view-item.component';
 
 @NgModule({
     declarations: [
-        IonTreeViewComponent,
+        TreeViewComponent,
         TreeViewItemsComponent,
         TreeViewItemComponent],
     imports: [
@@ -17,9 +17,9 @@ import { TreeViewItemComponent } from './tree-view-item/tree-view-item.component
         CommonModule
     ],
     exports: [
-        IonTreeViewComponent,
+        TreeViewComponent,
         TreeViewItemsComponent,
         TreeViewItemComponent
     ]
 })
-export class IonTreeViewModule { }
+export class TreeViewModule { }
