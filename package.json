@@ -1,28 +1,27 @@
 {
     "name": "ionic-tree-view",
-    "version": "0.2.8",
+    "version": "0.3.6",
     "repository": {
-      "type": "git",
-      "url": "https://github.com/heyligengregory/ionic-tree-view"
+        "type": "git",
+        "url": "https://github.com/heyligengregory/ionic-tree-view"
     },
     "author": {
-      "name": "Gregory Heyligen",
-      "email": "cudderheyl@gmail.com"
+        "name": "Gregory Heyligen",
+        "email": "cudderheyl@gmail.com"
     },
     "keywords": [
-      "angular",
-      "ionic",
-      "treeview"
+        "angular",
+        "ionic",
+        "treeview"
     ],
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/heyligengregory/ionic-tree-view/issues"
+        "url": "https://github.com/heyligengregory/ionic-tree-view/issues"
     },
     "scripts": {
         "build_lib": "ng build ionic-tree-view",
         "npm_pack": "cd dist/ionic-tree-view && npm pack",
-        "package": "npm run build_lib && npm run npm_pack",
-        "publish": "npm"
+        "package": "npm run build_lib && npm run npm_pack"
     },
     "dependencies": {
         "@angular/animations": "~7.0.0",
@@ -44,8 +43,8 @@
         "@angular/cli": "~7.0.3",
         "@angular/compiler-cli": "~7.0.0",
         "@angular/language-service": "~7.0.0",
-        "@ionic/core": "^4.0.0-rc.1",
         "@ionic/angular": "^4.0.0-rc.1",
+        "@ionic/core": "^4.0.0-rc.1",
         "@types/jasmine": "~2.8.8",
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "~8.9.4",
@@ -59,6 +58,7 @@
         "karma-jasmine-html-reporter": "^0.2.2",
         "ng-packagr": "^4.2.0",
         "protractor": "~5.4.0",
+        "scss-bundle": "^2.4.0",
         "ts-node": "~7.0.0",
         "tsickle": ">=0.29.0",
         "tslib": "^1.9.0",

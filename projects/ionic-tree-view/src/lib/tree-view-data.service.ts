@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class IonTreeViewDataService {
+export class TreeViewDataService {
     private _itemsHolder: any;
     private _itemsCheckedHolder: any;
     private _itemsCheckedTempHolder: any;

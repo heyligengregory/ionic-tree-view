@@ -8,6 +8,11 @@
       "sourceRoot": "projects/ionic-tree-view/src",
       "projectType": "library",
       "prefix": "iontv",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -39,5 +44,9 @@
       }
     }
   },
-  "defaultProject": "ionic-tree-view"
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

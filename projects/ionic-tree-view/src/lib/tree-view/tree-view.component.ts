@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IonTreeViewLibService } from '../ion-tree-view-lib.service';
-import { IonTreeViewDataService } from '../ionc-tree-view-data.service';
+import { TreeViewLibService } from '../tree-view-lib.service';
+import { TreeViewDataService } from '../tree-view-data.service';
 
 @Component({
-    selector: 'ion-tree-view',
+    selector: 'tree-view',
     template: `
     <div class="list" *ngIf="items && items.length > 0">
         <tree-view-items *ngFor='let item of myTreeView' [treeViewName]="treeViewName" [persistedName]="persistedName" [item]="item"></tree-view-items>
@@ -40,7 +40,7 @@ import { IonTreeViewDataService } from '../ionc-tree-view-data.service';
         `
     ]
 })
-export class IonTreeViewComponent implements OnInit {
+export class TreeViewComponent implements OnInit {
 
     @Input()
     public items: any;
@@ -56,8 +56,8 @@ export class IonTreeViewComponent implements OnInit {
     private tempArray = [];
 
     constructor(
-        public dataService: IonTreeViewDataService,
-        public treeViewService: IonTreeViewLibService) { }
+        public dataService: TreeViewDataService,
+        public treeViewService: TreeViewLibService) { }
 
     ngOnInit() {
         this.dataService.setItemsByName(this.items, this.treeViewName);
