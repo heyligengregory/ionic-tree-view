@@ -3,10 +3,49 @@
 This library is used to generate a treeview from an object list, you will find an example of a list below:
 
 ```json
-[ { "id":1, "name":"features" }, { "id":2, "name":"Add", "parentID":1 }, { "id":3, "name":"Remove", "parentID":1 }, { "id":9, "name":"Update", "parentID":1 }, { "id":11, "name":"UpdateDel", "parentID":9 }, { "id":27, "name":"Add", "parentID":2 }, { "id":28, "name":"master" } ]
+[
+  {
+    "id": 1,
+    "name": "Furniture"
+  },
+  {
+    "id": 2,
+    "name": "Tables",
+    "parentID": 1
+  },
+  {
+    "id": 3,
+    "name": "Chair",
+    "parentID": 1
+  },
+  {
+    "id": 4,
+    "name": "Sofas",
+    "parentID": 1
+  },
+  {
+    "id": 5,
+    "name": "Sofa 1",
+    "parentID": 4
+  },
+  {
+    "id": 6,
+    "name": "Little table",
+    "parentID": 2
+  },
+  {
+    "id": 7,
+    "name": "Decor"
+  },
+  {
+    "id": 8,
+    "name": "Outdoor"
+  }
+]
 ```
 
 ## Rendering
+
 ![alt text](https://user-images.githubusercontent.com/17003290/37466561-5949cd60-285e-11e8-93a2-4b33662a20ed.png)
 
 ## Installation
@@ -16,33 +55,32 @@ To install this library, run:
 ```bash
 $ npm install ionic-tree-view --save
 ```
+
 ## Use library into Ionic Project
 
 Once you have installed, you can import library in any Ionic application by doing:
 
 ```typescript
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppComponent } from './app.component';
+import { AppComponent } from "./app.component";
 
 // Import library
-import { TreeViewModule } from 'ionic-tree-view';
+import { TreeViewModule } from "ionic-tree-view";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
 
     // Specify library as an import
-    TreeViewModule.forRoot()
+    TreeViewModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
 Once your library is imported, you can use component in your Ionic application:
@@ -61,13 +99,13 @@ Once your library is imported, you can use component in your Ionic application:
 ## Inputs
 
 1. items
-This represents the elements that will form the treeview
+   This represents the elements that will form the treeview
 
 2. persistedName
-This allows you to save checked items in the local storage.
+   This allows you to save checked items in the local storage.
 
 3. treeViewName
-This is the name of your treeview
+   This is the name of your treeview
 
 ## License
 
