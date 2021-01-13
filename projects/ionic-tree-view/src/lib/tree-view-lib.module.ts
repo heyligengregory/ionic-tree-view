@@ -26,7 +26,7 @@ import { TreeViewLibService } from './tree-view-lib.service';
     ]
 })
 export class TreeViewModule { 
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<TreeViewModule> {
         return {
             ngModule: TreeViewModule,
             providers: [
