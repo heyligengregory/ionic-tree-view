@@ -19,6 +19,11 @@
           "options": {
             "tsConfig": "projects/ionic-tree-view/tsconfig.lib.json",
             "project": "projects/ionic-tree-view/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ionic-tree-view/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -36,14 +41,13 @@
               "projects/ionic-tree-view/tsconfig.lib.json",
               "projects/ionic-tree-view/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     }
   },
+  "defaultProject": "ionic-tree-view",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"

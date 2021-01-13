@@ -1,0 +1,30 @@
+<ion-grid class="ion-no-padding">
+  <ion-row>
+    <div style="display: flex" class="ion-align-items-center">
+      <div class="icon" (click)="treeViewService.collapseItem(item)">
+        <ng-container
+          *ngIf="item.items?.length !== 0 && item.items.collapsed != undefined"
+        >
+          <ion-icon
+            *ngIf="item.items.collapsed === false"
+            name="caret-down-outline"
+          ></ion-icon>
+          <ion-icon
+            *ngIf="item.items.collapsed === true"
+            name="caret-forward-outline"
+          ></ion-icon>
+        </ng-container>
+      </div>
+      <ion-item [lines]="'none'">
+        <ion-checkbox
+          slot="start"
+          class="checkbox"
+          id="check-bh-{{ item.id }}"
+          [(ngModel)]="item.checked"
+          (ngModelChange)="onCheckChanged()"
+        ></ion-checkbox>
+        <ion-label>{{ item.text }}</ion-label>
+      </ion-item>
+    </div>
+  </ion-row>
+</ion-grid>

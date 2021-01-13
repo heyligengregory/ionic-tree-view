@@ -1,6 +1,6 @@
 {
   "name": "ionic-tree-view",
-  "version": "0.3.6",
+  "version": "0.3.8",
   "repository": {
     "type": "git",
     "url": "https://github.com/heyligengregory/ionic-tree-view"
@@ -22,10 +22,10 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@ionic/core": "^4.0.0-rc.1",
-    "@angular/common": "^7.0.0",
-    "@angular/core": "^7.0.0",
-    "rxjs": "^6.3.3",
-    "zone.js": "^0.8.27"
+    "@ionic/core": "^5.5.2",
+    "@angular/common": "^11.0.9",
+    "@angular/core": "^11.0.9",
+    "rxjs": "^6.6.3",
+    "zone.js": "^0.11.3"
   }
 }

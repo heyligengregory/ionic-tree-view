@@ -1,22 +1,24 @@
 .itemLevel-1 {
-    padding-left: 0px;
+  padding-left: 0px;
 }
 
 @for $i from 2 through 30 {
-    .itemLevel-#{$i} {
-        margin-left: (($i - 1) * 20px) !important;
-    }
+  .itemLevel-#{$i} {
+    margin-left: (($i - 1) * 25px) !important;
+  }
 }
 .noElips {
-    text-overflow: initial;
-    white-space: normal;
+  text-overflow: initial;
+  white-space: normal;
 }
-ion-item, ion-item .label-md, tree-view-items .list-md {
-    margin: 0 !important;
+ion-item,
+ion-item .label-md,
+tree-view-items .list-md {
+  margin: 0 !important;
 }
 ion-item .item-inner {
-    border: none !important;
+  border: none !important;
 }
 tree-view-items ion-item .item-md {
-    padding-left: 0 !important;
+  padding-left: 0 !important;
 }
