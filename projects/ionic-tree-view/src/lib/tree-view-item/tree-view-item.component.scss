@@ -1,22 +1,22 @@
 .checkbox {
-  margin: 0px 20px 0px 0px;
+    margin: 0px 20px 0px 0px;
 }
 
 .icon {
-  min-width: 32px;
+    min-width: 32px;
 }
 
 .child-checked::before {
-  content: "";
-  background-color: #3880ff;
-  -webkit-transform: scale(1) translate(-50%, -50%);
-  -ms-transform: scale(1) translate(-50%, -50%);
-  transform: scale(1) translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  font-size: 12px;
-  position: absolute;
-  top: 50%;
-  left: 2.1em;
-  z-index: 999;
+    content: '';
+    background-color: #3880ff;
+    -webkit-transform: scale(1) translate(-50%, -50%);
+    -ms-transform: scale(1) translate(-50%, -50%);
+    transform: scale(1) translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 2.1em;
+    z-index: 999;
 }
