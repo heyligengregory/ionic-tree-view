@@ -86,26 +86,21 @@ export class AppModule {}
 Once your library is imported, you can use component in your Ionic application:
 
 ```xml
-<!-- You can now use component in home.html -->
-  <tree-view [items]="items" [persistedName]="persistedName" [treeViewName]="treeViewName"></tree-view>
+  <tree-view
+      [items]="items"
+      [persistedName]="'MyTreeView'"
+      [treeViewName]="'MyTreeView'">
+  </tree-view>
 ```
 
 ```typescript
+  //Items that will be in be in TreeView
   public items = [..];
+  //Optional - Key used to save checked items in the local storage
   public persistedName = "MyItemsPersisted";
+  //Optional - Key of TreeView
   public treeViewName = "MyItemsTreeView";
 ```
-
-## Inputs
-
-1. items
-   This represents the elements that will form the treeview
-
-2. persistedName
-   This allows you to save checked items in the local storage.
-
-3. treeViewName
-   This is the name of your treeview
 
 ## License
 
