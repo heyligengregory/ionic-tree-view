@@ -1,0 +1,29 @@
+<ion-grid class="ion-no-padding">
+    <ion-row class="tree-item-row">
+        <div class="icon" (click)="collapseItem(item)">
+            <ng-container *ngIf="couldBeCollapse(item)">
+                <ion-icon
+                    *ngIf="!item.items.collapsed"
+                    name="caret-down-outline"
+                ></ion-icon>
+                <ion-icon
+                    *ngIf="item.items.collapsed"
+                    name="caret-forward-outline"
+                ></ion-icon>
+            </ng-container>
+        </div>
+        <ion-item [lines]="'none'">
+            <ion-checkbox
+                id="check-bh-{{ item.id }}"
+                [ngClass]="{
+                    'child-checked': hasCheckedChild(item)
+                }"
+                slot="start"
+                class="checkbox checked"
+                [(ngModel)]="item.checked"
+                (ngModelChange)="checkChanged()"
+            ></ion-checkbox>
+            <ion-label>{{ item.text }}</ion-label>
+        </ion-item>
+    </ion-row>
+</ion-grid>

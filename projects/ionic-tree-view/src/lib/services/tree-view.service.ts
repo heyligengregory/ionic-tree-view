@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
     providedIn: 'root',
 })
-export class TreeViewLibService {
+export class TreeViewService {
     private hasAnyChildCheckedResult = false;
     public treeViewList: any;
     public itemsChecked: any;

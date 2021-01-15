@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TreeViewLibService } from '../tree-view-lib.service';
-import { TreeViewDataService } from '../tree-view-data.service';
+import { TreeViewService } from '../../services/tree-view.service';
+import { TreeViewDataService } from '../../services/tree-view-data.service';
+import { TreeItem } from '../../models/TreeItem';
 
 @Component({
     selector: 'tree-view',
@@ -8,22 +9,17 @@ import { TreeViewDataService } from '../tree-view-data.service';
     styleUrls: ['tree-view.component.scss'],
 })
 export class TreeViewComponent implements OnInit {
-    @Input()
-    public items: any;
-    @Input()
-    public callbackFunctionCheckChanged: () => void;
-    @Input()
-    public persistedName: string;
-    @Input()
-    public treeViewName: string;
-    public myTreeView: any;
+    @Input() public items: any;
+    @Input() public persistedName: string;
+    @Input() public treeViewName: string;
 
+    public treeViewItems: TreeItem[];
     private itemLevel = 1;
     private tempArray = [];
 
     constructor(
-        public dataService: TreeViewDataService,
-        public treeViewService: TreeViewLibService
+        private dataService: TreeViewDataService,
+        private treeViewService: TreeViewService
     ) {}
 
     ngOnInit() {
@@ -39,7 +35,15 @@ export class TreeViewComponent implements OnInit {
             this.initTreeView();
         }
 
-        this.myTreeView = this.getTreeView();
+        this.treeViewItems = this.getTreeView();
+    }
+
+    public getTreeViewByName(name: string): any {
+        return this.dataService.getTreeViewItemsByName(name);
+    }
+
+    public addTreeViewByName(treeView: any, name: string): void {
+        this.dataService.setTreeViewItemsByName(treeView, name);
     }
 
     private initTreeView(): void {
@@ -166,13 +170,5 @@ export class TreeViewComponent implements OnInit {
 
     private getTreeView(): any {
         return this.getTreeViewByName(this.treeViewName);
-    }
-
-    public getTreeViewByName(name: string): any {
-        return this.dataService.getTreeViewItemsByName(name);
-    }
-
-    public addTreeViewByName(treeView: any, name: string): void {
-        this.dataService.setTreeViewItemsByName(treeView, name);
     }
 }

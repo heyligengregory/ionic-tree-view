@@ -6,6 +6,11 @@
     min-width: 32px;
 }
 
+.tree-item-row {
+    display: flex;
+    align-items: center !important;
+}
+
 .child-checked::before {
     content: '';
     background-color: #3880ff;
