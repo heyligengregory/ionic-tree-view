@@ -19,7 +19,7 @@
     "url": "https://github.com/heyligengregory/ionic-tree-view/issues"
   },
   "scripts": {
-    "publish": "ng build ionic-tree-view --prod && npm publish dist/ionic-tree-view",
+    "publish": "npm version patch && ng build ionic-tree-view --prod && npm publish dist/ionic-tree-view",
     "postinstall": "ngcc",
     "e2e": "ng e2e"
   },
