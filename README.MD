@@ -46,7 +46,7 @@ This library is used to generate a treeview from an object list, you will find a
 
 ## Rendering
 
-![alt text](https://user-images.githubusercontent.com/17003290/37466561-5949cd60-285e-11e8-93a2-4b33662a20ed.png)
+![alt text](Treeview-example.PNG)
 
 ## Installation
 
