@@ -4,8 +4,8 @@
       [item]="item"
       [treeViewName]="treeViewName"
       [persistedName]="persistedName"
+      [childCheked]="treeViewLibService.anyChildChecked(item.items)"
     ></tree-view-item>
-    <!-- {{ "hasChild :" + treeViewLibService.anyChildChecked(item.items) }} -->
   </ion-item>
   <ion-list
     class="ion-no-padding"

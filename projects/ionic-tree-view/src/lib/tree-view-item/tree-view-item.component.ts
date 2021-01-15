@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { TreeViewLibService } from "../tree-view-lib.service";
 import { TreeViewEventService } from "../tree-view-event.service";
+import { TreeItem } from "../models/TreeItem";
 
 @Component({
   selector: "tree-view-item",
@@ -9,11 +10,13 @@ import { TreeViewEventService } from "../tree-view-event.service";
 })
 export class TreeViewItemComponent {
   @Input()
-  public item: any;
+  public item: TreeItem;
   @Input()
   public persistedName: string;
   @Input()
   public treeViewName: string;
+  @Input()
+  public childCheked: boolean;
 
   constructor(
     public treeViewService: TreeViewLibService,

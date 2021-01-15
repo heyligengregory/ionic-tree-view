@@ -17,8 +17,9 @@
       </div>
       <ion-item [lines]="'none'">
         <ion-checkbox
+          [ngClass]="{ 'child-checked': childCheked && !item.checked }"
           slot="start"
-          class="checkbox"
+          class="checkbox checked"
           id="check-bh-{{ item.id }}"
           [(ngModel)]="item.checked"
           (ngModelChange)="onCheckChanged()"

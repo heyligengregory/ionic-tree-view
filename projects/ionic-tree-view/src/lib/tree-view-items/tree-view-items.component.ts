@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { TreeItem } from "../models/TreeItem";
 import { TreeViewLibService } from "../tree-view-lib.service";
 
 @Component({
@@ -8,7 +9,7 @@ import { TreeViewLibService } from "../tree-view-lib.service";
 })
 export class TreeViewItemsComponent {
   @Input()
-  public item: any;
+  public item: TreeItem;
   @Input()
   public persistedName: string;
   @Input()
