@@ -92,7 +92,7 @@ export class TreeViewComponent implements OnInit {
     this.itemLevel = 1;
 
     this.items
-      .filter((e) => e.parentID === undefined)
+      .filter((e) => e.parentId === undefined)
       .forEach((value: any, key) => {
         treeViewItems.push(
           this.treeViewService.createNewItem(
@@ -113,10 +113,10 @@ export class TreeViewComponent implements OnInit {
     treeData = this.getItemsToAddInTreeView(treeData, treeViewItems);
 
     treeData
-      .filter((e) => e.parentID !== undefined)
+      .filter((e) => e.parentId !== undefined)
       .forEach((itemToAdd, ckikey) => {
         treeViewItems.forEach((item, tvikey) => {
-          if (itemToAdd.parentID === item.id) {
+          if (itemToAdd.parentId === item.id) {
             item.items.push(
               this.treeViewService.createNewItem(
                 itemToAdd,
@@ -148,7 +148,7 @@ export class TreeViewComponent implements OnInit {
     itemLevel
   ): any {
     treeViewChild.items.forEach((child, key) => {
-      if (treeDataItemToAdd.parentID === child.id) {
+      if (treeDataItemToAdd.parentId === child.id) {
         let itemExist = child.items.filter((e) => e.id === child.id);
         if (!itemExist || (itemExist && itemExist.length === 0)) {
           child.items.push(

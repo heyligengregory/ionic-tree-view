@@ -11,27 +11,27 @@ This library is used to generate a treeview from an object list, you will find a
   {
     "id": 2,
     "name": "Tables",
-    "parentID": 1
+    "parentId": 1
   },
   {
     "id": 3,
     "name": "Chair",
-    "parentID": 1
+    "parentId": 1
   },
   {
     "id": 4,
     "name": "Sofas",
-    "parentID": 1
+    "parentId": 1
   },
   {
     "id": 5,
     "name": "Sofa 1",
-    "parentID": 4
+    "parentId": 4
   },
   {
     "id": 6,
     "name": "Little table",
-    "parentID": 2
+    "parentId": 2
   },
   {
     "id": 7,

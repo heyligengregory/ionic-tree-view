@@ -104,7 +104,7 @@ export class TreeViewLibService {
       collapsed: true,
       checked: this.verifyIfItemIsChecked(itemToAdd.id, treeViewName),
       items: [],
-      parentID: itemToAdd.parentID,
+      parentId: itemToAdd.parentId,
     };
   }
 
