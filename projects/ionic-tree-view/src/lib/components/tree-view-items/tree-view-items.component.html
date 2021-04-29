@@ -4,6 +4,7 @@
         [treeViewName]="treeViewName"
         [persistedName]="persistedName"
         [childCheked]="anyChildChecked(item)"
+        (itemCheckedEvent)="itemChecked($event)"
     ></tree-view-item>
 </ion-item>
 <ion-list
@@ -15,5 +16,6 @@
         [item]="loopItem"
         [treeViewName]="treeViewName"
         [persistedName]="persistedName"
+        (itemCheckedEvent)="itemChecked($event)"
     ></tree-view-items>
 </ion-list>

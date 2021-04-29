@@ -1,4 +1,9 @@
-export interface TreeItem {
+export interface ITreeItemChecked {
+    id: number;
+    checked: boolean;
+}
+
+export interface ITreeItem {
     id: number;
     text: string;
     checked: boolean;

@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TreeViewService } from '../../services/tree-view.service';
 import { TreeViewDataService } from '../../services/tree-view-data.service';
-import { TreeItem } from '../../models/TreeItem';
+import { ITreeItemChecked, ITreeItem } from '../../models/tree-item.interfaces';
 
 @Component({
     selector: 'tree-view',
@@ -13,7 +13,9 @@ export class TreeViewComponent implements OnInit {
     @Input() public persistedName: string;
     @Input() public treeViewName: string;
 
-    public treeViewItems: TreeItem[];
+    @Output() public itemCheckedEvent = new EventEmitter<ITreeItemChecked>();
+
+    public treeViewItems: ITreeItem[];
     private itemLevel = 1;
     private tempArray = [];
 
@@ -44,6 +46,10 @@ export class TreeViewComponent implements OnInit {
 
     public addTreeViewByName(treeView: any, name: string): void {
         this.dataService.setTreeViewItemsByName(treeView, name);
+    }
+
+    public itemChecked(treeItemChecked: ITreeItemChecked) {
+        this.itemCheckedEvent.emit(treeItemChecked);
     }
 
     private initTreeView(): void {

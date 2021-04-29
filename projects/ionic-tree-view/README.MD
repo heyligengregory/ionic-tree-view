@@ -4,13 +4,13 @@ This library is used to generate a treeview from an object list, you will find a
 
 ```json
 [
-  { "id": 1, "name": "features" },
-  { "id": 2, "name": "Add", "parentId": 1 },
-  { "id": 3, "name": "Remove", "parentId": 1 },
-  { "id": 9, "name": "Update", "parentId": 1 },
-  { "id": 11, "name": "UpdateDel", "parentId": 9 },
-  { "id": 27, "name": "Add", "parentId": 2 },
-  { "id": 28, "name": "master" }
+    { "id": 1, "name": "features" },
+    { "id": 2, "name": "Add", "parentId": 1 },
+    { "id": 3, "name": "Remove", "parentId": 1 },
+    { "id": 9, "name": "Update", "parentId": 1 },
+    { "id": 11, "name": "UpdateDel", "parentId": 9 },
+    { "id": 27, "name": "Add", "parentId": 2 },
+    { "id": 28, "name": "master" }
 ]
 ```
 
@@ -31,24 +31,24 @@ $ npm install ionic-tree-view --save
 Once you have installed, you can import library in any Ionic application by doing:
 
 ```typescript
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { AppComponent } from "./app.component";
+import { AppComponent } from './app.component';
 
 // Import library
-import { IonicTreeViewModule } from "ionic-tree-view";
+import { IonicTreeViewModule } from 'ionic-tree-view';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
 
-    // Specify library as an import
-    IonicTreeViewModule.forRoot(),
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+        // Specify library as an import
+        IonicTreeViewModule.forRoot(),
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
 ```
@@ -57,7 +57,11 @@ Once your library is imported, you can use component in your Ionic application:
 
 ```xml
 <!-- You can now use component in home.html -->
-  <tree-view [items]="items" [persistedName]="persistedName" [treeViewName]="treeViewName"></tree-view>
+  <tree-view
+              [items]="items"
+              [persistedName]="persistedName"
+              [treeViewName]="treeViewName"
+              (itemCheckedEvent)="itemChecked($event)"></tree-view>
 ```
 
 ```typescript
