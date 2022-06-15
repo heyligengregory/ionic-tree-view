@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TreeViewService } from '../../services/tree-view.service';
 import { TreeViewEventService } from '../../services/tree-view-event.service';
-import { isNullOrUndefined } from 'util';
 import { ITreeItemChecked, ITreeItem } from '../../models/tree-item.interfaces';
 
 @Component({
@@ -20,10 +19,10 @@ export class TreeViewItemComponent implements OnInit {
     constructor(
         private treeViewService: TreeViewService,
         private eventService: TreeViewEventService
-    ) {}
+    ) { }
 
     public ngOnInit() {
-        if (!!this.item && isNullOrUndefined(this.item?.checked)) {
+        if (!!this.item && this.item.checked !== null && this.item.checked !== undefined) {
             this.item.checked = false;
         }
     }
@@ -47,8 +46,9 @@ export class TreeViewItemComponent implements OnInit {
 
     public couldBeCollapse = (treeItem: ITreeItem): boolean =>
         treeItem.items?.length !== 0 &&
-        !isNullOrUndefined(treeItem.items.collapsed);
+        treeItem.items.collapsed !== null &&
+        treeItem.items.collapsed !== undefined
 
     public hasCheckedChild = (treeItem: ITreeItem): boolean =>
-        this.childCheked && !treeItem.checked;
+        this.childCheked && !treeItem.checked
 }
