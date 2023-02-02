@@ -40,7 +40,7 @@
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.1100.6",
         "@angular-devkit/core": "^11.0.6",
-        "@angular/cli": "~11.0.6",
+        "@angular/cli": "~11.2.19",
         "@angular/compiler-cli": "~11.0.9",
         "@angular/language-service": "~11.0.9",
         "@ionic/angular": "^5.5.2",
